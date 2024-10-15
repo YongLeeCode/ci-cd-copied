@@ -1,12 +1,19 @@
-name: Trigger sync
+name: Update Fork and Deploy
 
 on:
   repository_dispatch:
     types: [main_updated]
 
 jobs:
-  trigger-sync:
+  update-and-deploy:
     runs-on: ubuntu-latest
     if: github.repository == 'YongLeeCode/ci-cd-copied'
     steps:
-      - run: echo 'sync'
+      - uses: actions/checkout@v4
+      - name: Sync fork
+        run: |
+          git remote add upstream https://github.com/subject-test-1/ci-cd.git
+          git fetch upstream
+          git checkout main
+          git merge upstream/main
+          git push origin main
