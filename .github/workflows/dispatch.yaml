@@ -1,0 +1,10 @@
+name: organization-dispatch
+on: 
+  repository_dispatch:
+    types: [organization-dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: trigger-fork
+        uses: echo "main branch pushed"
