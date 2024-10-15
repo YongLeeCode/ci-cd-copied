@@ -1,10 +1,11 @@
-name: organization-dispatch
+name: Trigger Fork Repo Action
 on: 
-  repository_dispatch:
-    types: [organization-dispatch]
+  push:
+    branches:
+      - main
+      
 jobs:
-  build:
+  trigger-fork:
     runs-on: ubuntu-latest
     steps:
-      - name: trigger-fork
-        uses: echo "main branch pushed"
+      - run: echo "main branch pushed"
